@@ -14,10 +14,13 @@ school
 └── sysadmin
 ```  
 The environment variable ``SCHOOL_DIR`` should be the absolute path to this school directory.  
+```
+export SCHOOL_DIR="/home/jeff/school/fall_2023/"
+```
+I group my classes into semesters, so your path may be different.
 
 
 ## Planning
 - [ ] brightspace wizard
 - [ ] workspace opener (essentially dwmtemplate)
 - [ ] schedule generation
-- [ ] 

@@ -1,0 +1,68 @@
+#!/bin/sh
+
+set -e
+
+function HelpMessage () {
+	# TODO: move to separate file?
+	echo "usage: 
+  brightwiz [-h] [-l|-c|-a|-g] <class>
+options:
+  -h  Show this help message
+  -l  List all classes
+  -c  Print the URL to the Contents page for a class
+  -a  Print the URL to the Assignments page for a class
+  -g  Print the URL to the Grades page for a class"
+	exit 0
+}
+
+function ListClasses () {
+	for dir in "$SCHOOL_DIR"*; do
+		if [ -e "$dir/.bright" ] ; then
+			echo "$(basename "$dir") : $(cat "$dir/.bright")"
+		fi
+	done
+	exit 0
+}
+
+function Contents () {
+	class="$(NameToID $1)"
+	echo "https://wentworth.brightspace.com/d2l/le/content/$class/Home"
+	exit 0
+}
+
+function Assignments () {
+	class="$(NameToID $1)"
+	echo "https://wentworth.brightspace.com/d2l/lms/dropbox/user/folders_list.d2l?ou=$class&isprv=0"
+	exit 0
+}
+
+function Grades () {
+	class="$(NameToID $1)"
+	echo "https://wentworth.brightspace.com/d2l/lms/grades/my_grades/main.d2l?ou=$class"
+	exit 0
+}
+
+function NameToID () {
+	if [ -d "$SCHOOL_DIR$1" ] && [ -e "$SCHOOL_DIR$1/.bright" ] ; then
+		echo "$(cat "$SCHOOL_DIR$1/.bright")"
+	else
+		echo "Class doesn't exist (did you forget to add a .bright file?)"
+		exit 1
+	fi
+}
+
+
+if [ $# -lt 1 ] || [ $# -gt 2 ] ; then
+	HelpMessage
+fi
+
+while getopts hlc:a:g: OPT ; do 
+	case "$OPT" in
+		h) HelpMessage;;
+		l) ListClasses;;
+		c) Contents "$OPTARG";;
+		a) Assignments "$OPTARG";;
+		g) Grades "$OPTARG";;
+		*) HelpMessage;;
+	esac
+done

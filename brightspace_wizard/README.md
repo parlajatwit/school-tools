@@ -12,7 +12,6 @@ $ echo 40273 > $SCHOOL_DIR/sysadmin/.bright
 
 # To-do
 - [ ] grade checker
-- [ ] open brightspace pages
-    - [ ] move help file to config folder?
+- [x] generate urls to common brightspace pages
 - [ ] assignments due
 - [ ] calendar module
