@@ -1,0 +1,14 @@
+#!/bin/sh
+
+if [ $# -ne 1 ] ; then
+	echo -e "usage:\n  workspace <class>"
+	exit 1
+fi
+
+if [ -e "$SCHOOL_DIR""$1"/.workspace ] ; then
+	$("$SCHOOL_DIR""$1"/.workspace)
+	exit 0
+else
+	echo "Class doesn't exist or workspace is undefined"
+	exit 1
+fi

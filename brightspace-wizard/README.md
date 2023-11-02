@@ -1,4 +1,4 @@
-# brightspace_wizard
+# brightspace-wizard
 
 This tool helps speed up some common brightspace actions.  
 It mainly generates URLs to class pages, saving time spent loading unneccessary resources and clicking through slow pages to get where you need to go.  
@@ -12,6 +12,8 @@ $ echo 40273 > $SCHOOL_DIR/sysadmin/.bright
 
 # To-do
 - [ ] grade checker
+    - [ ] scrape brightspace page (need solution for authentication)
 - [x] generate urls to common brightspace pages
 - [ ] assignments due
 - [ ] calendar module
+    - [ ] due dates in ical files

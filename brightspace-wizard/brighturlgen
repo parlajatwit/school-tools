@@ -46,6 +46,7 @@ function NameToID () {
 	if [ -d "$SCHOOL_DIR$1" ] && [ -e "$SCHOOL_DIR$1/.bright" ] ; then
 		echo "$(cat "$SCHOOL_DIR$1/.bright")"
 	else
+		# TODO: print this error message properly
 		echo "Class doesn't exist (did you forget to add a .bright file?)"
 		exit 1
 	fi
