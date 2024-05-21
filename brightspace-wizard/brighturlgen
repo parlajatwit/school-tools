@@ -16,11 +16,17 @@ options:
 }
 
 function ListClasses () {
-	for dir in "$SCHOOL_DIR"*; do
+	for dir in "$SCHOOL_DIR"/*; do
 		if [ -e "$dir/.bright" ] ; then
 			echo "$(basename "$dir") : $(cat "$dir/.bright")"
 		fi
 	done
+	exit 0
+}
+
+function Home () {
+	class="$(NameToID $1)"
+	echo "https://wentworth.brightspace.com/d2l/home/$class"
 	exit 0
 }
 
@@ -43,8 +49,8 @@ function Grades () {
 }
 
 function NameToID () {
-	if [ -d "$SCHOOL_DIR$1" ] && [ -e "$SCHOOL_DIR$1/.bright" ] ; then
-		echo "$(cat "$SCHOOL_DIR$1/.bright")"
+	if [ -d "$SCHOOL_DIR"/"$1" ] && [ -e "$SCHOOL_DIR"/"$1"/.bright ] ; then
+		echo "$(cat "$SCHOOL_DIR"/"$1"/.bright)"
 	else
 		# TODO: print this error message properly
 		echo "Class doesn't exist (did you forget to add a .bright file?)"
@@ -57,10 +63,11 @@ if [ $# -lt 1 ] || [ $# -gt 2 ] ; then
 	HelpMessage
 fi
 
-while getopts hlc:a:g: OPT ; do 
+while getopts hlc:a:i:g: OPT ; do 
 	case "$OPT" in
 		h) HelpMessage;;
 		l) ListClasses;;
+		i) Home "$OPTARG";;
 		c) Contents "$OPTARG";;
 		a) Assignments "$OPTARG";;
 		g) Grades "$OPTARG";;

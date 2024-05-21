@@ -12,17 +12,17 @@ options:
 
 function UpdateCalendar() {
 	AssertCalendarExists
-	curl -s $(cat "$SCHOOL_DIR"".calendar_link") > "$SCHOOL_DIR"".calendar.ics"
+	curl -s $(cat "$SCHOOL_DIR"/".calendar_link") > "$SCHOOL_DIR"/".calendar.ics"
 }
 
 function RunCalendar() {
 	AssertCalendarExists
-	$("$SCHOOL_DIR"".calendar") &
+	$("$SCHOOL_DIR"/".calendar") &
 	exit 0
 }
 
 function AssertCalendarExists() {
-	if [ ! -e "$SCHOOL_DIR"".calendar_link" ] ; then
+	if [ ! -e "$SCHOOL_DIR"/".calendar_link" ] ; then
 		echo ".calendar_link was not found in $SCHOOL_DIR"
 		exit 1
 	fi

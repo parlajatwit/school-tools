@@ -22,4 +22,4 @@ I group my classes into semesters, so your path may be different.
 ## Included tools
 - **brighturlgen** - generate urls to various brightspace content pages given a class id
 - **workspace** - open multiple user-defined programs given a class name
-
+- **calendar** (open to a different name) - download and update ical files

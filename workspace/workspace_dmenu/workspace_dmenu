@@ -1,6 +1,6 @@
 #!/bin/sh
 
-classes="$SCHOOL_DIR"".classes"
+classes="$SCHOOL_DIR""/.classes"
 
 choice=$(cat "$classes" | dmenu -l $(wc -l "$classes" | cut -f 1 -d ' '))
 
